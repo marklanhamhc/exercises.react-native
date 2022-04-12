@@ -25,7 +25,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>OpenSans-Regular.ttf</string>
+    <string>OpenSans-SemiBold.ttf</string>
 		<string>Tungsten-Black.ttf</string>
+    <string>fontello.ttf</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

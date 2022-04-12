@@ -6,8 +6,16 @@
       "sha1": "0d22f8decff166921cde5de1ed1f56beb6a019cc"
     },
     {
+      "path": "app/assets/fonts/OpenSans-SemiBold.ttf",
+      "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    },
+    {
       "path": "app/assets/fonts/Tungsten-Black.ttf",
       "sha1": "0adb4bc5c466cd2d9d57a6e63e2452d572a4ee1b"
+    },
+    {
+      "path": "app/assets/fonts/fontello.ttf",
+      "sha1": "e5acfd6b9665f5a01112c5c053c25f5a5545d4c5"
     }
   ]
 }

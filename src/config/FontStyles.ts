@@ -5,6 +5,10 @@ const coreFonts = StyleSheet.create({
     fontFamily: 'Tungsten-Black',
     fontWeight: '700'
   },
+  coreFontSemiBold: {
+    fontFamily: 'OpenSans',
+    fontWeight: '600'
+  },
   coreFontRegular: {
     fontFamily: 'OpenSans',
     fontWeight: '400'
@@ -54,10 +58,15 @@ const fontFamilies = StyleSheet.create({
     lineHeight: 14 * 1.2,
     letterSpacing: 14 * 0.03
   },
+  coreFontsPSemiBold: {
+    ...coreFonts.coreFontSemiBold,
+    fontSize: 14,
+    lineHeight: 14 * 1.4
+  },
   coreFontsP: {
     ...coreFonts.coreFontRegular,
-    fontSize: 26,
-    lineHeight: 26 * 1.4
+    fontSize: 14,
+    lineHeight: 14 * 1.4
   },
   coreFontsPSmall: {
     ...coreFonts.coreFontRegular,
@@ -76,6 +85,7 @@ export const FontStyles = {
   h3: fontFamilies.coreFontsH3,
   h4: fontFamilies.coreFontsH4,
   h5: fontFamilies.coreFontsH5,
+  pSemiBold: fontFamilies.coreFontsPSemiBold,
   p: fontFamilies.coreFontsP,
   pSmall: fontFamilies.coreFontsPSmall,
   icon: fontFamilies.coreIconFont
