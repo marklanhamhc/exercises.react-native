@@ -1,11 +1,9 @@
 import { NewsArticle } from '../models';
 import { newsMocks } from './news.mocks';
-
 export interface SearchRequest {
   page: number;
   pageSize: number;
 }
-
 export interface SearchResponse<T> {
   page: number; // Starts at 0
   pageSize: number;

@@ -12,9 +12,23 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.generic.white,
     opacity: 0.9
   },
+  container: {
+    // padding: BaseSize * 2
+  },
   flatlist: {
     height: '100%'
-  }
+  },
+  flatListHeader: {
+    height: BaseSize
+  },
+  flatListFooter: {
+    height: BaseSize * 7,
+    paddingTop: BaseSize * 2
+  },
+  flatListFooterEmpty: {
+    height: BaseSize * 7
+  },
+  icon: {}
 });
 
 export default styles;

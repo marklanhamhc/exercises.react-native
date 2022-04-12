@@ -1,3 +1,4 @@
+import reactotron from 'reactotron-react-native';
 import { api } from '../../core/api';
 import { SearchRequest } from '../../core/api/endpoints/news';
 import { ThunkResult } from '../../store/redux';

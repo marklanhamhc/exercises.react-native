@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import {
   ActivityIndicator,
   FlatList,
@@ -32,16 +32,15 @@ export default () => {
   reactotron.log!('loading', fixturesLoading);
   reactotron.log!('fixtures', fixtures);
 
-  const renderItem = ({ item }: ListItemRenderInfo<IFixturesData>) => (
-    <FixturesItem fixturesData={item} />
+  const renderItem = useCallback(
+    ({ item }: ListItemRenderInfo<IFixturesData>) => (
+      <FixturesItem fixturesData={item} />
+    ),
+    []
   );
 
-  // const fixturesItemPressed = () => {
-  //   reactotron.log!('fixturesItemPressed');
-  // };
-
   return (
-    <ScreenWrapper>
+    <View style={styles.container}>
       {/* Display data once fetched */}
       <FlatList
         keyExtractor={item => item.id}
@@ -57,6 +56,6 @@ export default () => {
           <ActivityIndicator />
         </View>
       )}
-    </ScreenWrapper>
+    </View>
   );
 };

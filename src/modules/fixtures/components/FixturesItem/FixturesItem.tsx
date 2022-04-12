@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Text, TouchableHighlight, View } from 'react-native';
+import { Alert, Image, Text, TouchableHighlight, View } from 'react-native';
 import moment from 'moment';
 import reactotron from 'reactotron-react-native';
 import { IFixturesData } from './FixturesItem.models';
@@ -13,14 +13,10 @@ export interface IFixturesItemProps {
 export const FixturesItem: React.FC<IFixturesItemProps> = ({
   fixturesData
 }: IFixturesItemProps) => {
-  const compName = 'FixturesItem';
-  reactotron.log!('FixturesItem: fixturesData:', fixturesData);
-  reactotron.log!('TEST:', moment(fixturesData.dateTime).isDST());
-
   const timeAdjust = moment(fixturesData.dateTime).isDST() ? 1 : 0;
 
   const onPress = () => {
-    reactotron.log!('FixturesItem onPress');
+    alert(`FixturesItem onPress: ${fixturesData.id}`);
   };
 
   return (

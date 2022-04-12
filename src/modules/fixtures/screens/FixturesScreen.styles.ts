@@ -2,6 +2,9 @@ import { BaseSize, Colors, Metrics } from '@config';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+  container: {
+    padding: BaseSize * 2
+  },
   activityIndicator: {
     position: 'absolute',
     top: 0,
