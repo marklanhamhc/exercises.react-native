@@ -14,8 +14,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   logo: {
-    width: Metrics.screenWidth * 0.2,
-    height: Metrics.screenWidth * 0.2
+    width: Metrics.screenWidth * 0.15,
+    height: Metrics.screenWidth * 0.15,
+    marginBottom: BaseSize
   },
   homeClub: {
     flex: 1,
@@ -35,7 +36,8 @@ const styles = StyleSheet.create({
   },
   competitionType: {
     fontSize: 14,
-    fontWeight: '300'
+    fontWeight: '300',
+    opacity: 0.5
   },
   awayClub: {
     flex: 1,

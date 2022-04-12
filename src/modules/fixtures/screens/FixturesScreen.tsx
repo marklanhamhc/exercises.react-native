@@ -1,16 +1,22 @@
 import React, { useEffect } from 'react';
-import { ActivityIndicator, FlatList, Text } from 'react-native';
-import ScreenWrapper from '../../../components/ScreenWrapper';
+import {
+  ActivityIndicator,
+  FlatList,
+  ListItemRenderInfo,
+  Text,
+  View
+} from 'react-native';
+import ScreenWrapper from '../../../components/ScreenWrapper/ScreenWrapper';
 import { useStateSelector, useThunkDispatch } from '../../../core/redux/hooks';
 import { getFixturesAsync } from '../thunks';
-import reactotron from 'reactotron-react-native';
 import { FixturesItem } from '../components/FixturesItem/FixturesItem';
-import styles from './FixturesScreen.styles';
 import { IFixturesData } from '../components/FixturesItem/FixturesItem.models';
+import styles from './FixturesScreen.styles';
+import reactotron from 'reactotron-react-native';
 
-// export interface IItemProps {
-//   item: IFixturesData;
-// }
+export interface IItemProps {
+  item: IFixturesData;
+}
 
 export default () => {
   const fixturesLoading = useStateSelector(u => u.fixtures.fixturesLoading);
@@ -23,23 +29,19 @@ export default () => {
     dispatch(getFixturesAsync());
   }, [dispatch]);
 
-  console.log('loading', fixturesLoading);
-  console.log('fixtures', fixtures);
-
   reactotron.log!('loading', fixturesLoading);
   reactotron.log!('fixtures', fixtures);
 
-  const renderItem = ({ item }) => <FixturesItem fixturesData={item} />;
+  const renderItem = ({ item }: ListItemRenderInfo<IFixturesData>) => (
+    <FixturesItem fixturesData={item} />
+  );
 
-  const fixturesItemPressed = () => {
-    reactotron.log!('fixturesItemPressed');
-  };
+  // const fixturesItemPressed = () => {
+  //   reactotron.log!('fixturesItemPressed');
+  // };
 
   return (
     <ScreenWrapper>
-      {/* Display loading indicator while data is being fetched */}
-      {fixturesLoading && <ActivityIndicator />}
-
       {/* Display data once fetched */}
       <FlatList
         keyExtractor={item => item.id}
@@ -48,6 +50,13 @@ export default () => {
         data={fixtures}
         style={styles.flatlist}
       />
+
+      {/* Display loading indicator while data is being fetched */}
+      {fixturesLoading && (
+        <View style={styles.activityIndicator}>
+          <ActivityIndicator />
+        </View>
+      )}
     </ScreenWrapper>
   );
 };
