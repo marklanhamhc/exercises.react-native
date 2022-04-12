@@ -1,4 +1,4 @@
-import { Fixture, NewsArticle } from '../models';
+import { NewsArticle } from '../models';
 import { newsMocks } from './news.mocks';
 
 export interface SearchRequest {
@@ -16,7 +16,7 @@ export const get = (request: SearchRequest): Promise<NewsArticle[]> => {
   return new Promise(resolve => {
     setTimeout(() => {
       const startIndex = request.page * request.pageSize;
-      const range = newsMocks.slice(startIndex, request.pageSize);
+      const range = newsMocks.slice(startIndex, startIndex + request.pageSize);
       resolve(range);
     }, 500);
   });

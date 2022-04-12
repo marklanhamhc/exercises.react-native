@@ -1,8 +1,22 @@
 import React, { useEffect } from 'react';
-import { Text } from 'react-native';
-import ScreenWrapper from '../../../components/ScreenWrapper';
+import {
+  ActivityIndicator,
+  FlatList,
+  ListItemRenderInfo,
+  Text,
+  View
+} from 'react-native';
+import ScreenWrapper from '../../../components/ScreenWrapper/ScreenWrapper';
 import { useStateSelector, useThunkDispatch } from '../../../core/redux/hooks';
 import { getFixturesAsync } from '../thunks';
+import { FixturesItem } from '../components/FixturesItem/FixturesItem';
+import { IFixturesData } from '../components/FixturesItem/FixturesItem.models';
+import styles from './FixturesScreen.styles';
+import reactotron from 'reactotron-react-native';
+
+export interface IItemProps {
+  item: IFixturesData;
+}
 
 export default () => {
   const fixturesLoading = useStateSelector(u => u.fixtures.fixturesLoading);
@@ -15,12 +29,34 @@ export default () => {
     dispatch(getFixturesAsync());
   }, [dispatch]);
 
-  console.log('loading', fixturesLoading);
-  console.log('fixtures', fixtures);
+  reactotron.log!('loading', fixturesLoading);
+  reactotron.log!('fixtures', fixtures);
+
+  const renderItem = ({ item }: ListItemRenderInfo<IFixturesData>) => (
+    <FixturesItem fixturesData={item} />
+  );
+
+  // const fixturesItemPressed = () => {
+  //   reactotron.log!('fixturesItemPressed');
+  // };
 
   return (
     <ScreenWrapper>
-      <Text>This is the screen you'll work on</Text>
+      {/* Display data once fetched */}
+      <FlatList
+        keyExtractor={item => item.id}
+        initialNumToRender={6}
+        renderItem={renderItem}
+        data={fixtures}
+        style={styles.flatlist}
+      />
+
+      {/* Display loading indicator while data is being fetched */}
+      {fixturesLoading && (
+        <View style={styles.activityIndicator}>
+          <ActivityIndicator />
+        </View>
+      )}
     </ScreenWrapper>
   );
 };

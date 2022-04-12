@@ -1,0 +1,13 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "app/assets/fonts/OpenSans-Regular.ttf",
+      "sha1": "0d22f8decff166921cde5de1ed1f56beb6a019cc"
+    },
+    {
+      "path": "app/assets/fonts/Tungsten-Black.ttf",
+      "sha1": "0adb4bc5c466cd2d9d57a6e63e2452d572a4ee1b"
+    }
+  ]
+}
