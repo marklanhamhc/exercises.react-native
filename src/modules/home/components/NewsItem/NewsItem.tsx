@@ -1,6 +1,6 @@
 import moment from 'moment';
-import React, { useEffect, useMemo, useState } from 'react';
-import { Image, Text, TouchableHighlight, View } from 'react-native';
+import React, { useMemo, useState } from 'react';
+import { Alert, Text, TouchableHighlight, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { GlobalTouchableHighlight } from '../../../../config/GlobalStyles';
 import { NewsArticle } from '../../../../core/api/models';
@@ -40,7 +40,7 @@ export const NewsItem: React.FC<INewsItemProps> = ({
 
   const onPress = () => {
     setId(newsData.id);
-    alert(`NewsItem onPress: ${id}`);
+    Alert.alert(`NewsItem onPress: ${id}`);
   };
 
   return (

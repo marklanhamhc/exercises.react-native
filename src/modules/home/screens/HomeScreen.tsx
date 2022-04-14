@@ -1,10 +1,9 @@
-import { Colors, Fontello } from '@config';
+import { Colors } from '@config';
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   FlatList,
-  Text,
   View,
-  ListItemRenderInfo,
+  ListRenderItemInfo,
   ActivityIndicator,
   RefreshControl
 } from 'react-native';
@@ -12,7 +11,7 @@ import { NewsArticle } from '../../../core/api/models';
 import { useStateSelector, useThunkDispatch } from '../../../core/redux/hooks';
 import store from '../../../store';
 import { NewsItem } from '../components/NewsItem/NewsItem';
-import { getNewsfeedAsync } from '../thunks';
+import { getNewsfeedAsync, refreshNewsfeedAsync } from '../thunks';
 import styles from './HomeScreen.styles';
 import reactotron from 'reactotron-react-native';
 
@@ -27,11 +26,12 @@ export default () => {
   // Set newsLoading and newsfeed from state
   const newsLoading = useStateSelector(u => u.newsfeed.newsLoading);
   const newsfeed = useStateSelector(u => u.newsfeed.newsfeed);
+  const refreshing = useStateSelector(u => u.newsfeed.refreshingLoading);
 
   // Set useState variables
   const [page, setPage] = useState<number>(1);
   const [data, setData] = useState<NewsArticle[]>([]);
-  const [refreshing, setRefreshing] = React.useState(false);
+  // const [refreshing, setRefreshing] = React.useState(false);
 
   // reactotron.log!('loading', newsLoading);
   // reactotron.log!('newsfeed', newsfeed);
@@ -55,10 +55,11 @@ export default () => {
 
   /**
    * Fetch data request handles the page increment and
-   * simulates the API feed (or mock in this case).
-   * This runs each time the page or dispatch dependency changes.
+   * simulates the API feed (or mock in this case) using dispatch.
+   * This runs each time the page or dispatch dependency updates
+   * and if it doesn't then the useCallback memoisation is utilised.
    */
-  const fetchData = useCallback(async () => {
+  const fetchData = useCallback(() => {
     const newsParams = {
       page,
       pageSize: 10
@@ -70,15 +71,12 @@ export default () => {
    * Runs every time page or fetchData dependency changes.
    */
   useEffect(() => {
-    if (page === 0) {
-      setData([]);
-    }
     fetchData();
   }, [page, fetchData]);
 
   // Set the NewsItem component to render in the FlatList
   const renderItem = useCallback(
-    ({ item }: ListItemRenderInfo<NewsArticle>) => <NewsItem newsData={item} />,
+    ({ item }: ListRenderItemInfo<NewsArticle>) => <NewsItem newsData={item} />,
     []
   );
 
@@ -94,7 +92,7 @@ export default () => {
    * the data is being fetched
    */
   const renderFooter = useCallback(() => {
-    if (newsLoading) {
+    if (!newsLoading) {
       return <View style={styles.flatListFooterEmpty} />;
     }
 
@@ -118,19 +116,27 @@ export default () => {
     setPage(page + 1);
   }, [page]);
 
-  const wait = (timeout: number) => {
-    return new Promise(resolve => setTimeout(resolve, timeout));
-  };
+  // const wait = (timeout: number) => {
+  //   return new Promise(resolve => setTimeout(resolve, timeout));
+  // };
 
   /**
    * This simulates a pull to refresh and in the real world
    * this would fetch the latest data from the API.
    */
   const onRefresh = React.useCallback(() => {
-    setRefreshing(true);
-    setData([...newsfeed]);
-    wait(1500).then(() => setRefreshing(false));
-  }, [newsfeed]);
+    // setRefreshing(true);
+    // setData([...newsfeed]);
+    // wait(1500).then(() => setRefreshing(false));
+
+    // Simulate the PTR
+    const newsParams = {
+      page: 0,
+      pageSize: 10
+    };
+    setData([]);
+    dispatch(refreshNewsfeedAsync(newsParams));
+  }, [dispatch]);
 
   // Renders the News feed items into an infinite scrollable list
   return (

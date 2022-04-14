@@ -9,12 +9,16 @@ function randomDate(start: Date, end: Date) {
   );
 }
 
+const id = () => {
+  return Math.floor(Math.random());
+};
+
 const create = (): NewsArticle => {
   return {
     id: uuidv4(),
     title: txtgen.sentence(),
     description: txtgen.paragraph(),
-    image: 'https://picsum.photos/500',
+    image: `https://picsum.photos/500/500/?test=${Math.random()}`,
     dateTime: randomDate(new Date(2019, 0, 1), new Date()).toISOString()
   };
 };

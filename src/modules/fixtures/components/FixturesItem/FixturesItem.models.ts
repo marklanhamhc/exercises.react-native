@@ -8,7 +8,7 @@ export interface ICompetition {
 }
 
 export interface IFixturesData {
-  id: number;
+  id: string;
   dateTime: Date;
   awayClub: IClubInfo;
   homeClub: IClubInfo;

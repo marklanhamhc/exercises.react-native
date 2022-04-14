@@ -1,12 +1,12 @@
 import React from 'react';
 import { Alert, Image, Text, TouchableHighlight, View } from 'react-native';
 import moment from 'moment';
-import { IFixturesData } from './FixturesItem.models';
 import styles from './FixturesItem.styles';
 import { GlobalTouchableHighlight } from '@config';
+import { Fixture } from '../../../../core/api/models';
 
 export interface IFixturesItemProps {
-  fixturesData: IFixturesData;
+  fixturesData: Fixture;
 }
 
 export const FixturesItem: React.FC<IFixturesItemProps> = ({
@@ -15,7 +15,7 @@ export const FixturesItem: React.FC<IFixturesItemProps> = ({
   const timeAdjust = moment(fixturesData.dateTime).isDST() ? 1 : 0;
 
   const onPress = () => {
-    alert(`FixturesItem onPress: ${fixturesData.id}`);
+    Alert.alert(`FixturesItem onPress: ${fixturesData.id}`);
   };
 
   return (

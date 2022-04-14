@@ -2,19 +2,18 @@ import React, { useCallback, useEffect } from 'react';
 import {
   ActivityIndicator,
   FlatList,
-  ListItemRenderInfo,
-  Text,
+  ListRenderItemInfo,
   View
 } from 'react-native';
 import { useStateSelector, useThunkDispatch } from '../../../core/redux/hooks';
 import { getFixturesAsync } from '../thunks';
 import { FixturesItem } from '../components/FixturesItem/FixturesItem';
-import { IFixturesData } from '../components/FixturesItem/FixturesItem.models';
+import { Fixture } from '../../../core/api/models';
 import styles from './FixturesScreen.styles';
 // import reactotron from 'reactotron-react-native';
 
 export interface IItemProps {
-  item: IFixturesData;
+  item: Fixture;
 }
 
 export default () => {
@@ -32,7 +31,7 @@ export default () => {
   // reactotron.log!('fixtures', fixtures);
 
   const renderItem = useCallback(
-    ({ item }: ListItemRenderInfo<IFixturesData>) => (
+    ({ item }: ListRenderItemInfo<Fixture>) => (
       <FixturesItem fixturesData={item} />
     ),
     []
