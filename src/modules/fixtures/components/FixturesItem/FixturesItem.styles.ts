@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   touchableHighlight: {
     backgroundColor: Colors.generic.white,
-    marginBottom: BaseSize * 2,
+    marginBottom: BaseSize,
     padding: BaseSize,
     borderRadius: GlobalBorderRadius
   },

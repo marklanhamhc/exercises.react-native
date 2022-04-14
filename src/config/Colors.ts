@@ -4,8 +4,9 @@ const WHITE = '#ffffff';
 
 // Core colour scheme
 const BLACK_HEAVY_METAL = '#343534';
-const BLUE_HAVELOCK = '#4DA1DC';
-const GRAY_GALLERY = '#ececec';
+const BLUE_HAVELOCK = '#4da1dc';
+const GREY_GALLERY = '#ececec';
+const GREY_SILVER = '#bdbdbd';
 
 export const Colors = {
   generic: {
@@ -13,6 +14,13 @@ export const Colors = {
     white: WHITE,
     blackHeavyMetal: BLACK_HEAVY_METAL,
     blueHavelock: BLUE_HAVELOCK,
-    greyGallery: GRAY_GALLERY
+    greyGallery: GREY_GALLERY,
+    greySilver: GREY_SILVER
+  },
+  components: {
+    tabBarIcon: {
+      default: GREY_SILVER,
+      active: BLUE_HAVELOCK
+    }
   }
 };

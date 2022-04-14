@@ -1,7 +1,6 @@
 import React from 'react';
 import { Alert, Image, Text, TouchableHighlight, View } from 'react-native';
 import moment from 'moment';
-import reactotron from 'reactotron-react-native';
 import { IFixturesData } from './FixturesItem.models';
 import styles from './FixturesItem.styles';
 import { GlobalTouchableHighlight } from '@config';

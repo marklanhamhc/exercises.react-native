@@ -1,4 +1,4 @@
-import { createAction, createAsyncAction } from 'typesafe-actions';
+import { createAsyncAction } from 'typesafe-actions';
 import { Fixture } from '../../core/api/models';
 
 export const getFixtures = createAsyncAction(

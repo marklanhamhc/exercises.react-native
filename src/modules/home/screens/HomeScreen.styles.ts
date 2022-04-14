@@ -27,8 +27,7 @@ const styles = StyleSheet.create({
   },
   flatListFooterEmpty: {
     height: BaseSize * 7
-  },
-  icon: {}
+  }
 });
 
 export default styles;

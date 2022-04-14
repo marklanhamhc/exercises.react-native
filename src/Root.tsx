@@ -1,8 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { HeaderMain } from './components/HeaderMain/HeaderMain';
 import { Colors } from './config/Colors';
+import { Fontello } from './config/Fontello';
+import { FontStyles } from './config/FontStyles';
 import FixturesScreen from './modules/fixtures/screens/FixturesScreen';
 import HomeScreen from './modules/home/screens/HomeScreen';
 import ProfileScreen from './modules/profile/screens/ProfileScreen';
@@ -27,12 +29,20 @@ export default () => {
           headerStyle: {
             backgroundColor: Colors.generic.blueHavelock
           },
-          headerTintColor: Colors.generic.white
-          // tabBarIcon: (tabInfo) => {
-          //   return (
-          //     <FontAwesomeIcon icon="coffee" />
-          //   );
-          // },
+          headerTintColor: Colors.generic.white,
+          tabBarIcon: tabInfo => {
+            return (
+              <Fontello
+                name={'dashboard'}
+                color={
+                  tabInfo.focused
+                    ? Colors.components.tabBarIcon.active
+                    : Colors.components.tabBarIcon.default
+                }
+                style={styles.tabBarIcon}
+              />
+            );
+          }
         }}
         component={HomeScreen}
       />
@@ -44,7 +54,20 @@ export default () => {
           headerStyle: {
             backgroundColor: Colors.generic.blueHavelock
           },
-          headerTintColor: Colors.generic.white
+          headerTintColor: Colors.generic.white,
+          tabBarIcon: tabInfo => {
+            return (
+              <Fontello
+                name={'list'}
+                color={
+                  tabInfo.focused
+                    ? Colors.components.tabBarIcon.active
+                    : Colors.components.tabBarIcon.default
+                }
+                style={styles.tabBarIcon}
+              />
+            );
+          }
         }}
         component={FixturesScreen}
       />
@@ -56,7 +79,20 @@ export default () => {
           headerStyle: {
             backgroundColor: Colors.generic.blueHavelock
           },
-          headerTintColor: Colors.generic.white
+          headerTintColor: Colors.generic.white,
+          tabBarIcon: tabInfo => {
+            return (
+              <Fontello
+                name={'instore'}
+                color={
+                  tabInfo.focused
+                    ? Colors.components.tabBarIcon.active
+                    : Colors.components.tabBarIcon.default
+                }
+                style={styles.tabBarIcon}
+              />
+            );
+          }
         }}
         component={ShopScreen}
       />
@@ -68,10 +104,29 @@ export default () => {
           headerStyle: {
             backgroundColor: Colors.generic.blueHavelock
           },
-          headerTintColor: Colors.generic.white
+          headerTintColor: Colors.generic.white,
+          tabBarIcon: tabInfo => {
+            return (
+              <Fontello
+                name={'profile'}
+                color={
+                  tabInfo.focused
+                    ? Colors.components.tabBarIcon.active
+                    : Colors.components.tabBarIcon.default
+                }
+                style={styles.tabBarIcon}
+              />
+            );
+          }
         }}
         component={ProfileScreen}
       />
     </Tab.Navigator>
   );
 };
+
+const styles = StyleSheet.create({
+  tabBarIcon: {
+    fontSize: 28
+  }
+});

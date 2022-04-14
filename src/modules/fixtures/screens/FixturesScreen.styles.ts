@@ -1,4 +1,4 @@
-import { BaseSize, Colors, Metrics } from '@config';
+import { BaseSize, Colors } from '@config';
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({

@@ -8,15 +8,19 @@ import {
   ActivityIndicator,
   RefreshControl
 } from 'react-native';
-import reactotron from 'reactotron-react-native';
 import { NewsArticle } from '../../../core/api/models';
 import { useStateSelector, useThunkDispatch } from '../../../core/redux/hooks';
+import store from '../../../store';
 import { NewsItem } from '../components/NewsItem/NewsItem';
 import { getNewsfeedAsync } from '../thunks';
 import styles from './HomeScreen.styles';
-// import reactotron from 'reactotron-react-native';
+import reactotron from 'reactotron-react-native';
+
+const ITEM_HEIGHT = 149;
 
 export default () => {
+  reactotron.log!('store.getState():', store.getState());
+
   // Set dispatch
   const dispatch = useThunkDispatch();
 
@@ -131,12 +135,6 @@ export default () => {
   // Renders the News feed items into an infinite scrollable list
   return (
     <View style={styles.container}>
-      <Fontello
-        name={'phone'}
-        color={Colors.generic.black}
-        size={26}
-        style={styles.icon}
-      />
       <FlatList
         keyExtractor={item => item.id}
         initialNumToRender={6}
@@ -150,6 +148,11 @@ export default () => {
         refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
+        getItemLayout={(data, index) => ({
+          length: ITEM_HEIGHT,
+          offset: ITEM_HEIGHT * index,
+          index
+        })}
       />
     </View>
   );

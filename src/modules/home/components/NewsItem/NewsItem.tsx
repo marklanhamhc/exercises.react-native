@@ -1,10 +1,11 @@
 import moment from 'moment';
 import React, { useEffect, useMemo, useState } from 'react';
-import { Alert, Image, Text, TouchableHighlight, View } from 'react-native';
-import reactotron from 'reactotron-react-native';
+import { Image, Text, TouchableHighlight, View } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import { GlobalTouchableHighlight } from '../../../../config/GlobalStyles';
 import { NewsArticle } from '../../../../core/api/models';
 import styles from './NewsItem.styles';
+// import reactotron from 'reactotron-react-native';
 
 export interface INewsItemProps {
   newsData: NewsArticle;
@@ -49,7 +50,14 @@ export const NewsItem: React.FC<INewsItemProps> = ({
       onPress={() => onPress()}
       style={styles.touchableHighlight}
     >
-      <View style={styles.container}>
+      <View
+        style={styles.container}
+        // onLayout={event => {
+        //   const { x, y, width, height } = event.nativeEvent.layout;
+        //   reactotron.log!('width:____________', width);
+        //   reactotron.log!('height:____________', height);
+        // }}
+      >
         <View style={styles.textContainer}>
           <Text style={styles.title} numberOfLines={2} ellipsizeMode="tail">
             {newsData.title}
@@ -63,11 +71,22 @@ export const NewsItem: React.FC<INewsItemProps> = ({
           </Text>
           <Text style={styles.dateTime}>{timeStamp}</Text>
         </View>
-        <Image
+
+        {/* <Image
           source={{ uri: newsData.image }}
           style={styles.image}
           resizeMode="contain"
           accessibilityRole="image"
+        /> */}
+
+        {/* FastImage has been used to optimise image caching */}
+        <FastImage
+          style={styles.image}
+          source={{
+            uri: newsData.image,
+            priority: FastImage.priority.normal
+          }}
+          resizeMode={FastImage.resizeMode.contain}
         />
       </View>
     </TouchableHighlight>

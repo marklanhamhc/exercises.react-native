@@ -12,10 +12,6 @@ const coreFonts = StyleSheet.create({
   coreFontRegular: {
     fontFamily: 'OpenSans',
     fontWeight: '400'
-  },
-  coreIconFont: {
-    fontFamily: 'FontAwesome6Pro-Light.otf',
-    fontWeight: '300'
   }
 });
 
@@ -72,10 +68,6 @@ const fontFamilies = StyleSheet.create({
     ...coreFonts.coreFontRegular,
     fontSize: 13,
     lineHeight: 13 * 1.4
-  },
-  coreIconFont: {
-    ...coreFonts.coreIconFont,
-    fontSize: 22
   }
 });
 
@@ -87,6 +79,5 @@ export const FontStyles = {
   h5: fontFamilies.coreFontsH5,
   pSemiBold: fontFamilies.coreFontsPSemiBold,
   p: fontFamilies.coreFontsP,
-  pSmall: fontFamilies.coreFontsPSmall,
-  icon: fontFamilies.coreIconFont
+  pSmall: fontFamilies.coreFontsPSmall
 };
